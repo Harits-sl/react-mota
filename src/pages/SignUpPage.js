@@ -36,6 +36,8 @@ const SignUpPage = () => {
       .then((data) => {
         // jika register berhasil set data customer ke local storage
         if (data["success"]) {
+          console.log(data["data"]);
+
           localStorage.setItem("id-customer", data["data"].id);
           localStorage.setItem("customer", data["data"].username);
           window.location.href = "/";

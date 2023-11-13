@@ -6,6 +6,10 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   const [solid, setSolid] = useState("bg-transparet");
 
+  const handleLogin = () => {
+    window.location.href = "/login";
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("id-customer");
     localStorage.removeItem("customer");
@@ -82,9 +86,15 @@ function Navbar() {
                   <li>
                     <button
                       className="dropdown-item text-light"
-                      onClick={handleLogout}
+                      onClick={
+                        localStorage.getItem("id-customer") === null
+                          ? handleLogin
+                          : handleLogout
+                      }
                     >
-                      Logout
+                      {localStorage.getItem("id-customer") === null
+                        ? "Login"
+                        : "logout"}
                     </button>
                   </li>
                 </ul>
